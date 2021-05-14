@@ -8,7 +8,18 @@ function bubblesort!(arr::AbstractVector)
 end
 
 function removeDuplicates(arr::AbstractVector)
-
+    filterArr = Vector{eltype(arr)}()
+    if length(arr) > 0
+        last_element = arr[1]
+        push!(filterArr, last_element)
+        for element in arr
+            if element != last_element
+                last_element = element
+                push!(filterArr, last_element)
+            end
+        end
+    end
+    return filterArr
 end
 
 v = [4, 1, -3, 6, 10, 4]
@@ -16,5 +27,9 @@ v = [4, 1, -3, 6, 10, 4]
 println(v)
 
 bubblesort!(v)
+
+println(v)
+
+v = removeDuplicates(v)
 
 println(v)
