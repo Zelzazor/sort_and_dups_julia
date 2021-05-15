@@ -22,8 +22,19 @@ function removeDuplicates(arr::AbstractVector)
     return filterArr
 end
 
-function main(args::Array{String, 1})
+function convertArrInt(a::Array{String, 1})
+    a1 = Array{Int, 1}
+    if length(a) > 0
+        for element in a
+            element_n = parse(Int, element)
+            push!(a1, element_n)
+        end
+    end
+    return a1
+end
 
+function main(args::Array{String, 1})
+    
 end
 
 function main()
