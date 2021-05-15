@@ -23,7 +23,7 @@ function removeDuplicates(arr::AbstractVector)
 end
 
 function convertArrInt(a::Array{String, 1})
-    a1 = Array{Int, 1}
+    a1 = Array{Int, 1}()
     if length(a) > 0
         for element in a
             element_n = parse(Int, element)
@@ -34,7 +34,12 @@ function convertArrInt(a::Array{String, 1})
 end
 
 function main(args::Array{String, 1})
-    
+    v = convertArrInt(args)
+    println(v)
+    bubblesort!(v)
+    println(v)
+    v = removeDuplicates(v)
+    println(v)
 end
 
 function main()
