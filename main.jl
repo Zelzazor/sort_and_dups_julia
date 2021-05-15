@@ -22,14 +22,26 @@ function removeDuplicates(arr::AbstractVector)
     return filterArr
 end
 
-v = [4, 1, -3, 6, 10, 4]
+function main(args::Array{String, 1})
 
-println(v)
+end
 
-bubblesort!(v)
+function main()
+    v = [4, 1, -3, 6, 10, 4]
 
-println(v)
+    println(v)
 
-v = removeDuplicates(v)
+    bubblesort!(v)
 
-println(v)
+    println(v)
+
+    v = removeDuplicates(v)
+
+    println(v)
+end
+
+if length(ARGS) > 0
+    main(ARGS)
+else
+    main()
+end
