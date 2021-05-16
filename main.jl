@@ -7,6 +7,16 @@ function bubblesort!(arr::AbstractVector)
     return arr
 end
 
+function bubblesort(OriginalArr::AbstractVector)
+    arr = copy(OriginalArr)
+    for _ = 2:length(arr), j = 1:length(arr)-1
+        if arr[j] > arr[j+1]
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+        end
+    end
+    return arr
+end
+
 function removeDuplicates(arr::AbstractVector)
     filterArr = Vector{eltype(arr)}()
     if length(arr) > 0
@@ -47,7 +57,7 @@ function main()
 
     println(v)
 
-    bubblesort!(v)
+    v = bubblesort(v)
 
     println(v)
 
