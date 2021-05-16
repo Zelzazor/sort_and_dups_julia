@@ -40,6 +40,30 @@ function quicksort!(arr::AbstractVector, i=1, j=length(arr))
     return arr
 end
 
+function quicksort(OriginalArr::AbstractVector, i=1, j=length(OriginalArr))
+    arr = copy(OriginalArr)
+    if i < j
+        pivot = arr[rand(i:j)]
+        left, right = i, j
+        while left <= right
+            while arr[left] < pivot
+                left+=1
+            end
+            while arr[right] > pivot
+                right-=1
+            end
+            if left <= right
+                arr[left], arr[right] = arr[right], arr[left]
+                left+=1
+                right-=1
+            end
+            quicksort!(arr, i, right)
+            quicksort!(arr, left, j)
+        end
+    end
+    return arr
+end
+
 function removeDuplicates(arr::AbstractVector)
     filterArr = Vector{eltype(arr)}()
     if length(arr) > 0
@@ -69,7 +93,7 @@ end
 function main(args::Array{String, 1})
     v = convertArrInt(args)
     println(v)
-    v = quicksort!(v)
+    v = quicksort(v)
     println(v)
     v = removeDuplicates(v)
     println(v)
@@ -80,7 +104,7 @@ function main()
 
     println(v)
 
-    v = quicksort!(v)
+    v = quicksort(v)
 
     println(v)
 
