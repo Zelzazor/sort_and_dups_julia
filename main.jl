@@ -17,8 +17,27 @@ function bubblesort(OriginalArr::AbstractVector)
     return arr
 end
 
-function quicksort!(arr::AbstractVector)
-    
+function quicksort!(arr::AbstractVector, i=1, j=length(arr))
+    if i < j
+        pivot = arr[rand(i:j)]
+        left, right = i, j
+        while left <= right
+            while arr[left] < pivot
+                left+=1
+            end
+            while arr[right] > pivot
+                right-=1
+            end
+            if left <= right
+                arr[left], arr[right] = arr[right], arr[left]
+                left+=1
+                right-=1
+            end
+            quicksort!(arr, i, right)
+            quicksort!(arr, left, j)
+        end
+    end
+    return arr
 end
 
 function removeDuplicates(arr::AbstractVector)
@@ -50,7 +69,7 @@ end
 function main(args::Array{String, 1})
     v = convertArrInt(args)
     println(v)
-    bubblesort!(v)
+    v = quicksort!(v)
     println(v)
     v = removeDuplicates(v)
     println(v)
@@ -61,7 +80,7 @@ function main()
 
     println(v)
 
-    v = bubblesort(v)
+    v = quicksort!(v)
 
     println(v)
 
